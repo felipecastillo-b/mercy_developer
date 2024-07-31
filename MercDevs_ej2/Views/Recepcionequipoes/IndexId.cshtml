@@ -1,13 +1,14 @@
 ﻿@model IEnumerable<MercDevs_ej2.Models.Recepcionequipo>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Recepciones del Cliente";
+    int clienteId = ViewBag.IdCliente ?? 0; // Obtenemos el IdCliente del ViewBag
 }
 
-<h1>Lista Recepcion De equipos</h1>
+<h1>Recepción de Equipo - @Model.FirstOrDefault()?.IdClienteNavigation?.Nombre @Model.FirstOrDefault()?.IdClienteNavigation?.Apellido</h1>
 <body style="align-content:center">
     <p>
-        <a asp-action="Create"><button type="button" class="btn btn-success ">Crear Recepcion</button></a>
+        @Html.ActionLink("Crear Recepción", "Create", "Recepcionequipoes", new { idCliente = Model.FirstOrDefault()?.IdCliente }, new { @class = "btn btn-success" })
     </p>
     <table class="table">
         <thead td style="white-space: nowrap;">
@@ -39,10 +40,37 @@
                         @Html.DisplayFor(modelItem => item.Fecha)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Estado)
+                        @{
+                            string estado = "";
+                            switch (item.Estado)
+                            {
+                                case "1":
+                                    estado = "Activo";
+                                    break;
+                                case "0":
+                                    estado = "Inactivo";
+                                    break;
+                            }
+                            @estado
+                        }
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.TipoPc)
+                        @{
+                            string tipopc = "";
+                            switch (item.TipoPc)
+                            {
+                                case 0:
+                                    tipopc = "Pc Torre";
+                                    break;
+                                case 1:
+                                    tipopc = "Notebook";
+                                    break;
+                                case 2:
+                                    tipopc = "All in one";
+                                    break;
+                            }
+                            @tipopc
+                        }
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.MarcaPc)

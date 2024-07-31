@@ -33,7 +33,7 @@
 
             <div class="form-group">
                 <label asp-for="TipoPc" class="control-label">Tipo PC</label>
-                <input asp-for="TipoPc" class="form-control" />
+                <select asp-for="TipoPc" class="form-control" asp-items="ViewBag.TipoPc"></select>
                 <span asp-validation-for="TipoPc" class="text-danger"></span>
             </div>
 
@@ -63,13 +63,13 @@
 
             <div class="form-group">
                 <label asp-for="CapacidadRam" class="control-label">Capacidad de RAM</label>
-                <input asp-for="CapacidadRam" class="form-control" />
+                <select asp-for="CapacidadRam" class="form-control" asp-items="ViewBag.CapacidadRam"></select>
                 <span asp-validation-for="CapacidadRam" class="text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="TipoAlmacenamiento" class="control-label">Tipo de Almacenamiento</label>
-                <input asp-for="TipoAlmacenamiento" class="form-control" />
+                <select asp-for="TipoAlmacenamiento" class="form-control" asp-items="ViewBag.TipoAlmacenamiento"></select>
                 <span asp-validation-for="TipoAlmacenamiento" class="text-danger"></span>
             </div>
 
@@ -81,7 +81,7 @@
 
             <div class="form-group">
                 <label asp-for="TipoGpu" class="control-label">Tipo de GPU</label>
-                <input asp-for="TipoGpu" class="form-control" />
+                <select asp-for="TipoGpu" class="form-control" asp-items="ViewBag.TipoGpu"></select>
                 <span asp-validation-for="TipoGpu" class="text-danger"></span>
             </div>
 
@@ -92,7 +92,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Estado" class="control-label">Estado</label>
-                <input asp-for="Estado" class="form-control" />
+                <select asp-for="Estado" class="form-control" asp-items="ViewBag.Estado"></select>
                 <span asp-validation-for="Estado" class="text-danger"></span>
             </div>
 

@@ -52,7 +52,19 @@
                 @Html.DisplayFor(modelItem => item.Direccion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Estado)
+                    @{
+                        string estado = "";
+                        switch (item.Estado)
+                        {
+                            case 1:
+                                estado = "Activo";
+                                break;
+                            case 0:
+                                estado = "Inactivo";
+                                break;
+                        }
+                        @estado
+                    }
             </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.IdCliente"><button type="button" class="btn btn-primary">Editar</button></a>

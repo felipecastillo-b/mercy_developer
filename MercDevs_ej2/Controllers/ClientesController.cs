@@ -53,6 +53,12 @@ namespace MercDevs_ej2.Controllers
         [Authorize]
         public IActionResult Create()
         {
+            ViewData["Estado"] = new SelectList(new[]
+            {
+                new { Value = 1, Text = "Activo" },
+                new { Value = 0, Text = "Inactivo" }
+            }, "Value", "Text");
+
             return View();
         }
 
@@ -87,6 +93,13 @@ namespace MercDevs_ej2.Controllers
             {
                 return NotFound();
             }
+
+            ViewData["Estado"] = new SelectList(new[]
+            {
+                new { Value = 1, Text = "Activo" },
+                new { Value = 0, Text = "Inactivo" }
+            }, "Value", "Text");
+
             return View(cliente);
         }
 
