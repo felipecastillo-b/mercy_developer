@@ -265,33 +265,65 @@
     </thead>
     <tbody>
         <tr>
-                @if (Model.Diagnosticosolucions == null || !Model.Diagnosticosolucions.Any())
-                {
-                <th class="border-end">No hay diagnostico disponible</th>
-                }
-                else
-                {
-                    foreach (var diagnostico in Model.Diagnosticosolucions)
-                    {
-                    <th class="border-end">Diagnostico: @diagnostico.DescripcionDiagnostico</th>
-                    }
-                }
+            <th class="border-end">N°</th>
+            <th class="border-end">Diagnosticos</th>
         </tr>
         <tr>
             @if (Model.Diagnosticosolucions == null || !Model.Diagnosticosolucions.Any())
             {
-                <th class="border-end">No hay solucion disponible</th>
+            <tr>
+                <th colspan="2" class="border-end"><b>No hay diagnostico disponible</b></th>
+            </tr>
             }
             else
             {
+                int i = 1;
                 foreach (var diagnostico in Model.Diagnosticosolucions)
                 {
-                    <th class="border-end">Solucion: @diagnostico.DescripcionSolucion</th>
+                <tr>
+
+                    <th class="border-end">@i</th>
+                    <th class="border-end">@diagnostico.DescripcionDiagnostico</th>
+                </tr>
+                    i++;
                 }
             }
         </tr>
     </tbody>
  </table>
+<table class="table table-dark table-striped border border-light-subtle border border-3">
+    <thead style="text-align:center">
+        <tr>
+            <th colspan="3">Soluciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th class="border-end">N°</th>
+            <th class="border-end">Descripcion</th>
+        </tr>
+        @if (Model.Diagnosticosolucions == null || !Model.Diagnosticosolucions.Any())
+        {
+            <tr>
+                <th colspan="2" class="border-end"><b>No hay solucion Registrada todavia</b></th>
+            </tr>
+        }
+        else
+
+        {
+            int i = 1;
+            foreach (var diagnostico in Model.Diagnosticosolucions)
+            {
+                <tr>
+                    <th class="border-end">@i</th>
+                    <th class="border-end">@diagnostico.DescripcionSolucion</th>
+                </tr>
+                i++;
+            }
+
+        }
+    </tbody>
+</table>
 
 <table class="table table-dark table-striped border border-light-subtle border border-3">
     <thead style="text-align:center">
