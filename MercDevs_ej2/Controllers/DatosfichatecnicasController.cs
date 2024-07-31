@@ -101,6 +101,7 @@ namespace MercDevs_ej2.Controllers
                 return NotFound();
             }
 
+            ViewData["DatosFichaTecnicaId"] = id;
             return View(verdiagnostico);
         }
 
