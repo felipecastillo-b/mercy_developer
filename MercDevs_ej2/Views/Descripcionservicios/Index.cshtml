@@ -16,7 +16,10 @@
                 @Html.DisplayNameFor(model => model.Nombre)
             </th>
             <th>
-                Id Servicio
+                Precio
+            </th>
+            <th>
+                SKU
             </th>
             <th></th>
         </tr>
@@ -28,7 +31,10 @@
                 @Html.DisplayFor(modelItem => item.Nombre)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ServicioIdServicioNavigation.IdServicio)
+                @Html.DisplayFor(modelItem => item.ServicioIdServicioNavigation.Precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServicioIdServicioNavigation.Sku)
             </td>
             <td>
                     <a asp-action="Edit" asp-route-id="@item.IdDescServ"><button type="button" class="btn btn-primary">Editar</button></a> |
