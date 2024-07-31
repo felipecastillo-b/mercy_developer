@@ -37,12 +37,11 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Nombre y Apellido del Cliente</th>
-                <th>Correo Electrónico del Cliente</th>
-                <th>Fecha Recepción de Equipo</th>
+                <th>Nombre Completo del Cliente</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Finalizacion</th>
                 <th>Marca de PC</th>
                 <th>Modelo PC</th>
-                <th>Nombre del Servicio</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -55,17 +54,14 @@
                             @recepcion.RecepcionEquipo.IdClienteNavigation.Nombre @recepcion.RecepcionEquipo.IdClienteNavigation.Apellido
                         </a>
                     </td>
-                    <td>@recepcion.RecepcionEquipo.IdClienteNavigation.Correo</td>
-                    <td>@recepcion.RecepcionEquipo.Fecha.ToString("dd/MM/yyyy")</td>
+                    <td>@recepcion.FechaInicio.ToString("dd/MM/yyyy")</td>
+                    <td>@recepcion.FechaFinalizacion.ToString("dd/MM/yyyy")</td>
                     <td>@recepcion.RecepcionEquipo.MarcaPc</td>
                     <td>@recepcion.RecepcionEquipo.ModeloPc</td>
                     <td>
-                        <a asp-controller="Servicios" asp-action="Details" asp-route-id="@recepcion.RecepcionEquipo.IdServicio">
-                            @recepcion.RecepcionEquipo.IdServicioNavigation.Nombre
+                        <a asp-controller="Datosfichatecnicas" asp-action="FichaTecnica" asp-route-id="@recepcion.IdDatosFichaTecnica">
+                            Ver Ficha
                         </a>
-                    </td>
-                    <td>
-                        <a asp-controller="Recepcionequipoes" asp-action="DetailsId" asp-route-id="@recepcion.RecepcionEquipo.Id">Ver Recepción Equipo</a>
                     </td>
                 </tr>
             }

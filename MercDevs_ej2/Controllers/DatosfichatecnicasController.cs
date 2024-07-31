@@ -20,20 +20,31 @@ namespace MercDevs_ej2.Controllers
         {
             _context = context;
         }
+
         [Authorize]
         public async Task<IActionResult> FichaTecnica(int? id)
         {
-            //Completar el código para la vista de FICHA TECNICA COMPLETA
-            //El ID recibido por este método es el id de Datos de Ficha Tecnica
+            if (id == null)
+            {
+                return NotFound(); // Redirige a una pagina de error si el id es nulo
+            }
 
-            var mercydevsEjercicio2Context = await _context.Datosfichatecnicas
-                .Where(d => d.IdDatosFichaTecnica == id)
+            var fichaTecnica = await _context.Datosfichatecnicas
                 .Include(d => d.RecepcionEquipo)
-                .Include(d => d.Diagnosticosolucions)
-                .Include(d => d.RecepcionEquipo.IdClienteNavigation)
-                .FirstOrDefaultAsync(d => d.RecepcionEquipoId == id);
-            return View(mercydevsEjercicio2Context);
+                    .ThenInclude(re => re.IdClienteNavigation) // Incluir cliente
+                .Include(d => d.RecepcionEquipo)
+                    .ThenInclude(re => re.IdServicioNavigation) // Incluir servicio
+                .Include(d => d.Diagnosticosolucions) // Incluir diagnosticos
+                .FirstOrDefaultAsync(d => d.IdDatosFichaTecnica == id);
+
+            if (fichaTecnica == null)
+            {
+                return NotFound(); // Redirige a una pagina de error si la ficha tecnica no se encuentra
+            }
+
+            return View(fichaTecnica);
         }
+
         [Authorize]
         public async Task<IActionResult> Inicio()
         {
