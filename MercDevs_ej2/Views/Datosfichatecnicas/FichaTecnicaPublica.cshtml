@@ -1,6 +1,57 @@
 ﻿@model MercDevs_ej2.Models.Datosfichatecnica
 
+@{
+    Layout = "_LayoutPdf.cshtml";
+}
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha Técnica</title>
+    <style>
+        /* Estilos generales para la vista */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            margin-bottom: 5px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 5px;
+        }
+
+        th, td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th, td {
+            background-color: #343a40;
+            color: #fff;
+        }
+
+        .text-end {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        .no-print {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
 <h1>Datos Ficha Tecnica</h1>
 <div class="d-flex justify-content-center mb-4">
     <button id="exportPDF" class="btn-with-img">
@@ -335,22 +386,5 @@
         </tr>
     </tbody>
 </table>
-
-@section Scripts {
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-    <script>
-        document.getElementById('exportPDF').addEventListener('click', function () {
-            const { jsPDF } = window.jspdf;
-            html2canvas(document.body).then(function (canvas) {
-                var imgData = canvas.toDataURL('image/png');
-                var pdf = new jsPDF('p', 'mm', 'a4');
-                var imgProps = pdf.getImageProperties(imgData);
-                var pdfWidth = pdf.internal.pageSize.getWidth();
-                var pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-                pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-                pdf.save('ficha_tecnica.pdf');
-            });
-        });
-    </script>
-}
+</body>
+</html>

@@ -9,6 +9,7 @@ using MercDevs_ej2.Models;
 using System.Net.Mail;
 using System.Net;
 using Microsoft.AspNetCore.Authorization;
+using Rotativa.AspNetCore;
 
 namespace MercDevs_ej2.Controllers
 {
@@ -366,6 +367,30 @@ namespace MercDevs_ej2.Controllers
             }
 
             return View(fichaTecnica);
+        }
+
+        public IActionResult ExportPdf(int id)
+        {
+            var datosFicha = _context.Datosfichatecnicas
+                .Include(d => d.RecepcionEquipo)
+                .ThenInclude(r => r.IdClienteNavigation)
+                .Include(d => d.Diagnosticosolucions)
+                .FirstOrDefault(d => d.IdDatosFichaTecnica == id);
+
+            if (datosFicha == null)
+            {
+                return NotFound();
+            }
+
+            var pdfResult = new ViewAsPdf("FichaTecnicaPublica", datosFicha)
+            {
+                FileName = $"Ficha_Tecnica_{id}.pdf",
+                PageSize = Rotativa.AspNetCore.Options.Size.A4,
+                PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
+                PageMargins = new Rotativa.AspNetCore.Options.Margins(10, 10, 10, 10)
+            };
+
+            return pdfResult;
         }
 
         private bool DatosfichatecnicaExists(int id)

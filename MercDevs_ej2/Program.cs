@@ -1,6 +1,7 @@
 using MercDevs_ej2.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Rotativa.AspNetCore;
 //Para iniciar sesión y prohibir ingresos
 using Microsoft.AspNetCore.Authentication.Cookies;
 //FIN
@@ -39,7 +40,7 @@ app.UseRouting();
 app.UseAuthentication();
 
 app.UseAuthorization();
-
+app.UseRotativa();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Login}/{action=Ingresar}/{id?}");
