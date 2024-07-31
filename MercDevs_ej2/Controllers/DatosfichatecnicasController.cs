@@ -398,6 +398,36 @@ namespace MercDevs_ej2.Controllers
             return pdfResult;
         }
 
+        public async Task<IActionResult> Finalizar(int id)
+        {
+            var datofichatecnica = await _context.Datosfichatecnicas.FindAsync(id);
+            if (datofichatecnica == null)
+            {
+                return NotFound();
+            }
+
+            datofichatecnica.Estado = "0";
+
+            try
+            {
+                _context.Update(datofichatecnica);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!DatosfichatecnicaExists(datofichatecnica.IdDatosFichaTecnica))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
         private bool DatosfichatecnicaExists(int id)
         {
             return _context.Datosfichatecnicas.Any(e => e.IdDatosFichaTecnica == id);
