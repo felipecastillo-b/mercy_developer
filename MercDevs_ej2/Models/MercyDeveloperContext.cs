@@ -37,17 +37,14 @@ public partial class MercyDeveloperContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder
-            .UseCollation("utf8mb4_general_ci")
-            .HasCharSet("utf8mb4");
+            .UseCollation("utf8_general_ci")
+            .HasCharSet("utf8");
 
         modelBuilder.Entity<Cliente>(entity =>
         {
             entity.HasKey(e => e.IdCliente).HasName("PRIMARY");
 
-            entity
-                .ToTable("cliente")
-                .HasCharSet("utf8")
-                .UseCollation("utf8_general_ci");
+            entity.ToTable("cliente");
 
             entity.Property(e => e.IdCliente)
                 .HasColumnType("int(11)")
@@ -64,10 +61,7 @@ public partial class MercyDeveloperContext : DbContext
         {
             entity.HasKey(e => e.IdDatosFichaTecnica).HasName("PRIMARY");
 
-            entity
-                .ToTable("datosfichatecnica")
-                .HasCharSet("utf8")
-                .UseCollation("utf8_general_ci");
+            entity.ToTable("datosfichatecnica");
 
             entity.HasIndex(e => e.RecepcionEquipoId, "fk_DatosFichaTecnica_RecepcionEquipo1_idx");
 
@@ -110,10 +104,7 @@ public partial class MercyDeveloperContext : DbContext
         {
             entity.HasKey(e => e.IdDescServ).HasName("PRIMARY");
 
-            entity
-                .ToTable("descripcionservicio")
-                .HasCharSet("utf8")
-                .UseCollation("utf8_general_ci");
+            entity.ToTable("descripcionservicio");
 
             entity.HasIndex(e => e.ServicioIdServicio, "fk_DescripcionServicio_Servicio1_idx");
 
@@ -135,10 +126,7 @@ public partial class MercyDeveloperContext : DbContext
         {
             entity.HasKey(e => e.IdDiagnosticoSolucion).HasName("PRIMARY");
 
-            entity
-                .ToTable("diagnosticosolucion")
-                .HasCharSet("utf8")
-                .UseCollation("utf8_general_ci");
+            entity.ToTable("diagnosticosolucion");
 
             entity.HasIndex(e => e.DatosFichaTecnicaId, "fk_DiagnosticoSolucion_DatosFichaTecnica1_idx");
 
@@ -159,10 +147,7 @@ public partial class MercyDeveloperContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity
-                .ToTable("recepcionequipo")
-                .HasCharSet("utf8")
-                .UseCollation("utf8_general_ci");
+            entity.ToTable("recepcionequipo");
 
             entity.HasIndex(e => e.IdCliente, "fk_RecepcionEquipo_Cliente1_idx");
 
@@ -203,10 +188,7 @@ public partial class MercyDeveloperContext : DbContext
         {
             entity.HasKey(e => e.IdServicio).HasName("PRIMARY");
 
-            entity
-                .ToTable("servicio")
-                .HasCharSet("utf8")
-                .UseCollation("utf8_general_ci");
+            entity.ToTable("servicio");
 
             entity.HasIndex(e => e.UsuarioIdUsuario, "fk_Servicio_Usuario_idx");
 
@@ -230,10 +212,7 @@ public partial class MercyDeveloperContext : DbContext
         {
             entity.HasKey(e => e.IdUsuario).HasName("PRIMARY");
 
-            entity
-                .ToTable("usuario")
-                .HasCharSet("utf8")
-                .UseCollation("utf8_general_ci");
+            entity.ToTable("usuario");
 
             entity.Property(e => e.IdUsuario)
                 .HasColumnType("int(11)")
