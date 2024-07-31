@@ -133,6 +133,7 @@ namespace MercDevs_ej2.Controllers
             }
 
             // Si todas las propiedades cumplen con los requisitos, se guarda en la base de datos
+            recepcionequipo.Estado = "1";
             _context.Add(recepcionequipo);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

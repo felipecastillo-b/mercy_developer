@@ -133,6 +133,7 @@ namespace MercDevs_ej2.Controllers
             if (datosfichatecnica.FechaInicio != null)
             {
                 datosfichatecnica.RecepcionEquipoId = Convert.ToInt32(id);
+                datosfichatecnica.Estado = "1";
                 _context.Add(datosfichatecnica);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index", "Recepcionequipoes");

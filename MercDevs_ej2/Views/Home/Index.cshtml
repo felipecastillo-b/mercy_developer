@@ -51,21 +51,21 @@
             {
                 <tr>
                     <td>
-                        <a asp-controller="Clientes" asp-action="Details" asp-route-id="@recepcion.IdCliente">
-                            @recepcion.IdClienteNavigation.Nombre @recepcion.IdClienteNavigation.Apellido
+                        <a asp-controller="Clientes" asp-action="Details" asp-route-id="@recepcion.RecepcionEquipo.IdCliente">
+                            @recepcion.RecepcionEquipo.IdClienteNavigation.Nombre @recepcion.RecepcionEquipo.IdClienteNavigation.Apellido
                         </a>
                     </td>
-                    <td>@recepcion.IdClienteNavigation.Correo</td>
-                    <td>@recepcion.Fecha.ToString("dd/MM/yyyy")</td>
-                    <td>@recepcion.MarcaPc</td>
-                    <td>@recepcion.ModeloPc</td>
+                    <td>@recepcion.RecepcionEquipo.IdClienteNavigation.Correo</td>
+                    <td>@recepcion.RecepcionEquipo.Fecha.ToString("dd/MM/yyyy")</td>
+                    <td>@recepcion.RecepcionEquipo.MarcaPc</td>
+                    <td>@recepcion.RecepcionEquipo.ModeloPc</td>
                     <td>
-                        <a asp-controller="Servicios" asp-action="Details" asp-route-id="@recepcion.IdServicio">
-                            @recepcion.IdServicioNavigation.Nombre
+                        <a asp-controller="Servicios" asp-action="Details" asp-route-id="@recepcion.RecepcionEquipo.IdServicio">
+                            @recepcion.RecepcionEquipo.IdServicioNavigation.Nombre
                         </a>
                     </td>
                     <td>
-                        <a asp-controller="Recepcionequipoes" asp-action="DetailsId" asp-route-id="@recepcion.Id">Ver Recepción Equipo</a>
+                        <a asp-controller="Recepcionequipoes" asp-action="DetailsId" asp-route-id="@recepcion.RecepcionEquipo.Id">Ver Recepción Equipo</a>
                     </td>
                 </tr>
             }

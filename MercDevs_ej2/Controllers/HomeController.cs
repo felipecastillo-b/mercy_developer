@@ -26,10 +26,10 @@ namespace MercDevs_ej2.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var recepciones = await _context.Recepcionequipos
-                .Include(r => r.IdClienteNavigation)
-                .Include(r => r.IdServicioNavigation)
-                .Where(r => r.Estado != "Finalizar")
+            var recepciones = await _context.Datosfichatecnicas
+                .Where(r => r.Estado == "1")
+                .Include(r => r.RecepcionEquipo).ThenInclude(r => r.IdClienteNavigation)
+                .Include(r => r.RecepcionEquipo).ThenInclude(r => r.IdServicioNavigation)
                 .ToListAsync();
 
 
