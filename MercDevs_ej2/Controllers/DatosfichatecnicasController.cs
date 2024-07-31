@@ -200,6 +200,38 @@ namespace MercDevs_ej2.Controllers
                 return NotFound();
             }
             ViewData["RecepcionEquipoId"] = new SelectList(_context.Recepcionequipos, "Id", "Id", datosfichatecnica.RecepcionEquipoId);
+
+            ViewData["Soinstalado"] = new SelectList(new[]
+            {
+                new { Value = 0, Text = "Windows 10" },
+                new { Value = 1, Text = "Windows 11" },
+                new { Value = 2, Text = "Linux" },
+                new { Value = 3, Text = "Windows y Linux" }
+            }, "Value", "Text");
+
+            ViewData["SuiteOfficeInstalada"] = new SelectList(new[]
+            {
+                new { Value = 0, Text = "Microsoft Office 2013" },
+                new { Value = 1, Text = "Microsoft Office 2019" },
+                new { Value = 2, Text = "Microsoft Office 365" },
+                new { Value = 3, Text = "OpenOffice" }
+            }, "Value", "Text");
+
+            ViewData["LectorPdfinstalado"] = new SelectList(new[]
+            {
+                new { Value = 0, Text = "No Instalado" },
+                new { Value = 1, Text = "Instalado" },
+                new { Value = 2, Text = "No Aplica" }
+            }, "Value", "Text");
+
+            ViewData["NavegadorWebInstalado"] = new SelectList(new[]
+            {
+                new { Value = 0, Text = "No Instalado" },
+                new { Value = 1, Text = "Chrome" },
+                new { Value = 2, Text = "Firefox" },
+                new { Value = 3, Text = "Chrome y Firefox" }
+            }, "Value", "Text");
+
             return View(datosfichatecnica);
         }
 

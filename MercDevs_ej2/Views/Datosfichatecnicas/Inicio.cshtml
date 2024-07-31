@@ -64,16 +64,85 @@
                     @Html.DisplayFor(modelItem => item.PobservacionesRecomendaciones)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Soinstalado)
+                    @{
+                        string soinstalado = "";
+                        switch (item.Soinstalado)
+                        {
+                            case 0:
+                                soinstalado = "Windows 10";
+                                break;
+                            case 1:
+                                soinstalado = "Windows 11";
+                                break;
+                            case 2:
+                                soinstalado = "Linux";
+                                break;
+                            case 3:
+                                soinstalado = "Windows y Linux";
+                                break;
+                        }
+                        @soinstalado
+                    }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.SuiteOfficeInstalada)
+                    @{
+                        string suiteofficeinstalada = "";
+                        switch (item.SuiteOfficeInstalada)
+                        {
+                            case 0:
+                                suiteofficeinstalada = "Microsoft Office 2013";
+                                break;
+                            case 1:
+                                suiteofficeinstalada = "Microsoft Office 2019";
+                                break;
+                            case 2:
+                                suiteofficeinstalada = "Microsoft Office 365";
+                                break;
+                            case 3:
+                                suiteofficeinstalada = "OpenOffice";
+                                break;
+                        }
+                        @suiteofficeinstalada
+                    }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.LectorPdfinstalado)
+                    @{
+                        string lectorpdfinstalado = "";
+                        switch (item.LectorPdfinstalado)
+                        {
+                            case 0:
+                                lectorpdfinstalado = "No Instalado";
+                                break;
+                            case 1:
+                                lectorpdfinstalado = "Instalado";
+                                break;
+                            case 2:
+                                lectorpdfinstalado = "No Instalado";
+                                break;
+                        }
+                        @lectorpdfinstalado
+                    }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NavegadorWebInstalado)
+                    @{
+                        string navegadorwebinstalado = "";
+                        switch (item.NavegadorWebInstalado)
+                        {
+                            case 0:
+                                navegadorwebinstalado = "No Instalado";
+                                break;
+                            case 1:
+                                navegadorwebinstalado = "Chrome";
+                                break;
+                            case 2:
+                                navegadorwebinstalado = "Firefox";
+                                break;
+                            case 3:
+                                navegadorwebinstalado = "Chrome y Firefox";
+                                break;
+                        }
+                        @navegadorwebinstalado
+                    }
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.AntivirusInstalado)
