@@ -34,11 +34,24 @@ namespace MercDevs_ej2.Controllers
         [Route("Recepcionequipoes/IndexId/{idCliente}")]
         public async Task<IActionResult> IndexId(int idCliente)
         {
-            var mercydevsEjercicio2Context = _context.Recepcionequipos
-                                                          .Include(r => r.IdServicioNavigation)
-                                                          .Include(r => r.IdClienteNavigation)
-                                                          .Where(r => r.IdCliente == idCliente);
-            return View (await mercydevsEjercicio2Context.ToListAsync());
+            // Obtener las recepciones para el cliente especificado
+            var recepciones = _context.Recepcionequipos
+                                      .Include(r => r.IdServicioNavigation)
+                                      .Include(r => r.IdClienteNavigation)
+                                      .Where(r => r.IdCliente == idCliente);
+
+            // Obtener el cliente
+            var cliente = await _context.Clientes.FindAsync(idCliente);
+            if (cliente == null)
+            {
+                return NotFound();
+            }
+
+            // Pasar el cliente al ViewBag
+            ViewBag.ClienteNombre = $"{cliente.Nombre} {cliente.Apellido}";
+            ViewBag.IdCliente = idCliente;
+
+            return View(await recepciones.ToListAsync());
         }
 
         // GET: Recepcionequipoes/Details/5
