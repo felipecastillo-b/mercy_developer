@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-07-2024 a las 00:24:50
--- Versión del servidor: 10.4.25-MariaDB
--- Versión de PHP: 8.1.10
+-- Tiempo de generación: 31-07-2024 a las 19:09:05
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,15 +35,18 @@ CREATE TABLE `cliente` (
   `Telefono` varchar(45) DEFAULT NULL,
   `Direccion` varchar(45) DEFAULT NULL,
   `Estado` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `cliente`
 --
 
 INSERT INTO `cliente` (`idCliente`, `Nombre`, `Apellido`, `Correo`, `Telefono`, `Direccion`, `Estado`) VALUES
-(1, 'Juanito', 'Perez', 'juan@gmail.com', '918878789', 'Acacias 999', 1),
-(2, 'Lucho', 'Beliga', 'lucho@gmail.com', '234242424', 'Bolonegsi', 1);
+(1, 'Juanito', 'Perez', 'felipecastillo.snk@gmail.com', '918878789', 'Acacias 999', 1),
+(2, 'Lucho', 'Beliga', 'lucho@gmail.com', '234242424', 'Bolonegsi', 1),
+(3, 'Testing', 'User', 'test@test.com', '712376', 'Los Angeles', 1),
+(4, 'Ignacio', 'Torres', 'felipecastillo.snk@gmail.com', '+56 13312', 'Los Angeles', 1),
+(5, 'andrea', 'pirlo', 'pirlo@gmail.com', '123', 'Ignacio Verga 953', 1);
 
 -- --------------------------------------------------------
 
@@ -61,15 +64,21 @@ CREATE TABLE `datosfichatecnica` (
   `LectorPDFInstalado` int(11) DEFAULT NULL COMMENT '0:No Instalado ; 1: Instalado 2: No aplica',
   `NavegadorWebInstalado` int(11) DEFAULT NULL COMMENT '0:No instalado ; 1: Chrome ; 2: Firefox; 3: Chrome y Firefox',
   `Antivirus Instalado` varchar(100) DEFAULT NULL,
+  `Estado` varchar(45) DEFAULT NULL,
   `RecepcionEquipoId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `datosfichatecnica`
 --
 
-INSERT INTO `datosfichatecnica` (`idDatosFichaTecnica`, `FechaInicio`, `FechaFinalizacion`, `PObservacionesRecomendaciones`, `SOInstalado`, `SuiteOfficeInstalada`, `LectorPDFInstalado`, `NavegadorWebInstalado`, `Antivirus Instalado`, `RecepcionEquipoId`) VALUES
-(1, '2024-07-18 17:40:00', '2024-07-28 17:40:00', 'SIn registro', 1, 1, 1, 1, '1', 1);
+INSERT INTO `datosfichatecnica` (`idDatosFichaTecnica`, `FechaInicio`, `FechaFinalizacion`, `PObservacionesRecomendaciones`, `SOInstalado`, `SuiteOfficeInstalada`, `LectorPDFInstalado`, `NavegadorWebInstalado`, `Antivirus Instalado`, `Estado`, `RecepcionEquipoId`) VALUES
+(1, '2024-07-18 17:40:00', '2024-07-28 17:40:00', 'La pantalla no enciende', 2, 1, 1, 1, 'Karspersky', '1', 1),
+(6, '2024-07-13 07:20:00', '2024-07-07 07:20:00', 'Parpadeos en la pantalla', 1, 3, 1, 3, 'Avast AntiVirus', '0', 2),
+(8, '2024-07-04 11:06:00', '2024-07-13 11:06:00', 'Ventiladores giran en sentido contrario', 0, 0, 1, 0, 'Ninguno', '0', 3),
+(9, '2024-07-04 11:06:00', '2024-07-04 11:06:00', 'No da Video', 0, 0, 0, 0, 'Ninguno', '1', 5),
+(11, '2024-07-10 11:21:00', '2024-07-06 11:21:00', 'Mucho polvo', 0, 0, 0, 0, 'Ninguno', '1', 18),
+(12, '2024-07-04 12:51:00', '2024-08-03 12:51:00', 'Ventiladores giran en sentido contrario y la pantalla parpadea', 0, 0, 0, 3, 'Avast', '0', 19);
 
 -- --------------------------------------------------------
 
@@ -81,17 +90,16 @@ CREATE TABLE `descripcionservicio` (
   `idDescServ` int(11) NOT NULL,
   `Nombre` varchar(45) NOT NULL,
   `Servicio_idServicio` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `descripcionservicio`
 --
 
 INSERT INTO `descripcionservicio` (`idDescServ`, `Nombre`, `Servicio_idServicio`) VALUES
-(1, 'dvgdfgdg', 1),
-(2, 'Prueba 22222', 1),
-(4, 'ggggggggggggg', 1),
-(5, 'uuuuu', 2);
+(1, 'Formateo de PC sin respaldo', 1),
+(2, 'Desarmado de Computadora', 2),
+(5, 'Armado de Computadora', 2);
 
 -- --------------------------------------------------------
 
@@ -104,7 +112,16 @@ CREATE TABLE `diagnosticosolucion` (
   `DescripcionDiagnostico` varchar(1000) NOT NULL,
   `DescripcionSolucion` varchar(1000) DEFAULT NULL,
   `DatosFichaTecnicaId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `diagnosticosolucion`
+--
+
+INSERT INTO `diagnosticosolucion` (`idDiagnosticoSolucion`, `DescripcionDiagnostico`, `DescripcionSolucion`, `DatosFichaTecnicaId`) VALUES
+(1, 'Esto es descripcion diagnostico', 'Y esto descripcion solucion', 1),
+(15, 'ole ole ole', 'ole ole ola', 1),
+(16, 'Probando Diagnostico', 'Probando Solucion', 1);
 
 -- --------------------------------------------------------
 
@@ -128,16 +145,20 @@ CREATE TABLE `recepcionequipo` (
   `TipoGpu` int(11) DEFAULT NULL,
   `Grafico` varchar(45) DEFAULT NULL,
   `Estado` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `recepcionequipo`
 --
 
 INSERT INTO `recepcionequipo` (`id`, `IdCliente`, `IdServicio`, `Fecha`, `TipoPc`, `Accesorio`, `MarcaPc`, `ModeloPc`, `NSerie`, `CapacidadRam`, `TipoAlmacenamiento`, `CapacidadAlmacenamiento`, `TipoGpu`, `Grafico`, `Estado`) VALUES
-(1, 1, 1, '2024-06-16 19:26:00', 1, 'SIn accesorios', 'Asus', 'ROG', '24242424242', 4, 1, '480', 1, 'Intel', '1'),
-(2, 2, 1, '2024-06-16 19:28:00', 2, 'Cargador', 'HP', 'G420', '2655557777', 8, 2, '10000', 1, 'Intel', '1'),
-(3, 1, 1, '2024-06-16 19:34:00', 1, 'SIn accesorios', 'Generico', 'Generik09', '22211122', 12, 1, '240', 2, 'GTX-200', NULL);
+(1, 1, 1, '2024-06-16 19:26:00', 0, 'SIn accesorios', 'Asus', 'ROG', '24242424242', 3, 3, '480', 1, 'Intel', '0'),
+(2, 2, 1, '2024-06-16 19:28:00', 2, 'Cargador', 'HP', 'G420', '2655557777', 8, 2, '10000', 1, 'Intel', '0'),
+(3, 1, 1, '2024-06-16 19:34:00', 1, 'SIn accesorios', 'Generico', 'Generik09', '22211122', 12, 1, '240', 2, 'GTX-200', '0'),
+(4, 2, 2, '2024-07-03 01:09:00', 1, 'Mochila', 'Lenovo', 'Gaming21', 'ads121', 2, 2, '480', 1, 'graphic1', '0'),
+(5, 2, 1, '2024-07-10 06:07:00', 1, 'Cargador', 'Lenovo', 'IdeaPad Gaming', '990292s0s01', 3, 3, '128gb', 1, 'GTX 1050', '1'),
+(18, 5, 2, '2024-07-05 11:21:00', 2, 'Ninguno', 'HP', 'Pavilion', '999282s782', 0, 0, '512gb', 0, 'Intel Iris', '1'),
+(19, 4, 2, '2024-07-06 12:51:00', 0, 'Torre', 'Dell', 'IDL', 'kk29192kk', 0, 2, '128', 0, 'Intel Iris', '1');
 
 -- --------------------------------------------------------
 
@@ -151,7 +172,7 @@ CREATE TABLE `servicio` (
   `Precio` int(11) NOT NULL,
   `Sku` varchar(45) DEFAULT NULL,
   `Usuario_idUsuario` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `servicio`
@@ -173,7 +194,7 @@ CREATE TABLE `usuario` (
   `Apellido` varchar(45) NOT NULL,
   `Correo` varchar(45) NOT NULL,
   `password` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`
@@ -244,13 +265,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `idCliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idCliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `datosfichatecnica`
 --
 ALTER TABLE `datosfichatecnica`
-  MODIFY `idDatosFichaTecnica` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idDatosFichaTecnica` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `descripcionservicio`
@@ -262,13 +283,13 @@ ALTER TABLE `descripcionservicio`
 -- AUTO_INCREMENT de la tabla `diagnosticosolucion`
 --
 ALTER TABLE `diagnosticosolucion`
-  MODIFY `idDiagnosticoSolucion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idDiagnosticoSolucion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `recepcionequipo`
 --
 ALTER TABLE `recepcionequipo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `servicio`
