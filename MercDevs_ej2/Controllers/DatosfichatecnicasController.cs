@@ -316,6 +316,7 @@ namespace MercDevs_ej2.Controllers
             var fichaTecnica = await _context.Datosfichatecnicas
                 .Include(d => d.RecepcionEquipo)
                 .Include(d => d.RecepcionEquipo.IdClienteNavigation)
+                .Include(d => d.Diagnosticosolucions)
                 .FirstOrDefaultAsync(d => d.IdDatosFichaTecnica == id);
 
             if (fichaTecnica == null)
@@ -325,6 +326,9 @@ namespace MercDevs_ej2.Controllers
 
             var cliente = fichaTecnica.RecepcionEquipo.IdClienteNavigation;
             var enlace = Url.Action("FichaTecnicaPublica", "DatosFichaTecnicas", new { id = fichaTecnica.IdDatosFichaTecnica }, Request.Scheme);
+            var pdf = new ViewAsPdf("FichaTecnicaPublica", fichaTecnica) { FileName = $"Ficha_Tecnica_{id}.pdf" };
+
+            var pdfBytes = await pdf.BuildFile(ControllerContext);
 
             var smtpClient = new SmtpClient("smtp.gmail.com")
             {
@@ -341,6 +345,7 @@ namespace MercDevs_ej2.Controllers
                 IsBodyHtml = false,
             };
             mailMessage.To.Add(cliente.Correo);
+            mailMessage.Attachments.Add(new Attachment(new MemoryStream(pdfBytes), $"Ficha_Tecnica_{id}.pdf"));
 
             try
             {

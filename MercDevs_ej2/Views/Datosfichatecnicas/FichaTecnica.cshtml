@@ -344,19 +344,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script>
-        document.getElementById('exportPDF').addEventListener('click', function() {
-            const { jsPDF } = window.jspdf;
-            html2canvas(document.body).then(function(canvas) {
-                var imgData = canvas.toDataURL('image/png');
-                var pdf = new jsPDF('p', 'mm', 'a4');
-                var imgProps = pdf.getImageProperties(imgData);
-                var pdfWidth = pdf.internal.pageSize.getWidth();
-                var pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-                pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-                pdf.save('ficha_tecnica.pdf');
-            });
-        });
-
         document.getElementById('notificarCorreo').addEventListener('click', function () {
             fetch('/DatosFichaTecnicas/EnviarFichaTecnica/@Model.IdDatosFichaTecnica', {
                 method: 'POST',
