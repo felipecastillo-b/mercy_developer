@@ -268,7 +268,7 @@ namespace MercDevs_ej2.Controllers
                 return NotFound();
             }
 
-            recepcionEquipo.Estado = "Finalizar";
+            recepcionEquipo.Estado = "0";
 
             try
             {

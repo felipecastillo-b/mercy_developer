@@ -28,12 +28,17 @@
                 @Html.DisplayNameFor(model => model.ModeloPc)
             </th>
             <th>
-               Id Cliente
+               @Html.DisplayNameFor(model => model.Grafico)
             </th>
             <th>
-                Id servicio    
+                @Html.DisplayNameFor(model => model.IdClienteNavigation.Nombre)
             </th>
-            <th>Acciones</th>
+            <th>
+                Servicio
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
         </tr>
     </thead>
     <tbody style="text-align">
@@ -46,7 +51,22 @@
                 @Html.DisplayFor(modelItem => item.Fecha)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TipoPc)
+                  @{
+                        string tipopc = "";
+                        switch (item.TipoPc)
+                        {
+                            case 0:
+                                tipopc = "Pc Torre";
+                                break;
+                            case 1:
+                                tipopc = "Notebook";
+                                break;
+                            case 2:
+                                tipopc = "All in one";
+                                break;
+                        }
+                        @tipopc
+                    }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.MarcaPc)
@@ -54,7 +74,6 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ModeloPc)
             </td>
-           
             <td>
                 @Html.DisplayFor(modelItem => item.Grafico)
             </td>
@@ -63,6 +82,21 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IdServicioNavigation.Nombre)
+            </td>
+            <td>
+                @{
+                        string estado = "";
+                        switch (item.Estado)
+                        {
+                            case "1":
+                                    estado = "Activo";
+                                break;
+                            case "0":
+                                    estado = "Inactivo";
+                                break;
+                        }
+                        @estado
+                    }
             </td>
             <td>
 
