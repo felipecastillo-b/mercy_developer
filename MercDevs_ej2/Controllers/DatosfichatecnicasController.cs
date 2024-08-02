@@ -178,7 +178,7 @@ namespace MercDevs_ej2.Controllers
             if (datosfichatecnica.FechaInicio != null)
             {
                 datosfichatecnica.RecepcionEquipoId = Convert.ToInt32(id);
-                datosfichatecnica.Estado = "1";
+                datosfichatecnica.Estado = 1;
                 _context.Add(datosfichatecnica);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index", "Recepcionequipoes");
@@ -406,7 +406,7 @@ namespace MercDevs_ej2.Controllers
                 return NotFound();
             }
 
-            datofichatecnica.Estado = "0";
+            datofichatecnica.Estado = 0;
 
             try
             {

@@ -38,7 +38,7 @@ public partial class Datosfichatecnica
 
     public string? AntivirusInstalado { get; set; }
 
-    public string? Estado { get; set; }
+    public int? Estado { get; set; }
 
     public int RecepcionEquipoId { get; set; }
 
