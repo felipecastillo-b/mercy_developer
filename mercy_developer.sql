@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-07-2024 a las 19:09:05
+-- Tiempo de generación: 02-08-2024 a las 04:33:17
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -64,7 +64,7 @@ CREATE TABLE `datosfichatecnica` (
   `LectorPDFInstalado` int(11) DEFAULT NULL COMMENT '0:No Instalado ; 1: Instalado 2: No aplica',
   `NavegadorWebInstalado` int(11) DEFAULT NULL COMMENT '0:No instalado ; 1: Chrome ; 2: Firefox; 3: Chrome y Firefox',
   `Antivirus Instalado` varchar(100) DEFAULT NULL,
-  `Estado` varchar(45) DEFAULT NULL,
+  `Estado` int(11) DEFAULT NULL,
   `RecepcionEquipoId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -73,12 +73,12 @@ CREATE TABLE `datosfichatecnica` (
 --
 
 INSERT INTO `datosfichatecnica` (`idDatosFichaTecnica`, `FechaInicio`, `FechaFinalizacion`, `PObservacionesRecomendaciones`, `SOInstalado`, `SuiteOfficeInstalada`, `LectorPDFInstalado`, `NavegadorWebInstalado`, `Antivirus Instalado`, `Estado`, `RecepcionEquipoId`) VALUES
-(1, '2024-07-18 17:40:00', '2024-07-28 17:40:00', 'La pantalla no enciende', 2, 1, 1, 1, 'Karspersky', '1', 1),
-(6, '2024-07-13 07:20:00', '2024-07-07 07:20:00', 'Parpadeos en la pantalla', 1, 3, 1, 3, 'Avast AntiVirus', '0', 2),
-(8, '2024-07-04 11:06:00', '2024-07-13 11:06:00', 'Ventiladores giran en sentido contrario', 0, 0, 1, 0, 'Ninguno', '0', 3),
-(9, '2024-07-04 11:06:00', '2024-07-04 11:06:00', 'No da Video', 0, 0, 0, 0, 'Ninguno', '1', 5),
-(11, '2024-07-10 11:21:00', '2024-07-06 11:21:00', 'Mucho polvo', 0, 0, 0, 0, 'Ninguno', '1', 18),
-(12, '2024-07-04 12:51:00', '2024-08-03 12:51:00', 'Ventiladores giran en sentido contrario y la pantalla parpadea', 0, 0, 0, 3, 'Avast', '0', 19);
+(1, '2024-07-18 17:40:00', '2024-07-28 17:40:00', 'La pantalla no enciende', 2, 1, 1, 1, 'Karspersky', 1, 1),
+(6, '2024-07-13 07:20:00', '2024-07-07 07:20:00', 'Parpadeos en la pantalla', 1, 3, 1, 3, 'Avast AntiVirus', 0, 2),
+(8, '2024-07-04 11:06:00', '2024-07-13 11:06:00', 'Ventiladores giran en sentido contrario', 0, 0, 1, 0, 'Ninguno', 0, 3),
+(9, '2024-07-04 11:06:00', '2024-07-04 11:06:00', 'No da Video', 0, 0, 0, 0, 'Ninguno', 1, 5),
+(11, '2024-07-10 11:21:00', '2024-07-06 11:21:00', 'Mucho polvo', 0, 0, 0, 0, 'Ninguno', 1, 18),
+(12, '2024-07-04 12:51:00', '2024-08-03 12:51:00', 'Ventiladores giran en sentido contrario y la pantalla parpadea', 0, 0, 0, 3, 'Avast', 1, 19);
 
 -- --------------------------------------------------------
 
