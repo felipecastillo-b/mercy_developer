@@ -325,8 +325,8 @@ namespace MercDevs_ej2.Controllers
             }
 
             var cliente = fichaTecnica.RecepcionEquipo.IdClienteNavigation;
-            var enlace = Url.Action("FichaTecnicaPublica", "DatosFichaTecnicas", new { id = fichaTecnica.IdDatosFichaTecnica }, Request.Scheme);
-            var pdf = new ViewAsPdf("FichaTecnicaPublica", fichaTecnica) { FileName = $"Ficha_Tecnica_{id}.pdf" };
+            var enlace = Url.Action("FichaTecnicaPdf", "DatosFichaTecnicas", new { id = fichaTecnica.IdDatosFichaTecnica }, Request.Scheme);
+            var pdf = new ViewAsPdf("FichaTecnicaPdf", fichaTecnica) { FileName = $"Ficha_Tecnica_{id}.pdf" };
 
             var pdfBytes = await pdf.BuildFile(ControllerContext);
 
@@ -374,6 +374,22 @@ namespace MercDevs_ej2.Controllers
             return View(fichaTecnica);
         }
 
+        public async Task<IActionResult> FichaTecnicaPdf(int id)
+        {
+            var fichaTecnica = await _context.Datosfichatecnicas
+                .Include(d => d.RecepcionEquipo)
+                .Include(d => d.RecepcionEquipo.IdClienteNavigation)
+                .Include(d => d.Diagnosticosolucions)
+                .FirstOrDefaultAsync(d => d.IdDatosFichaTecnica == id);
+
+            if (fichaTecnica == null)
+            {
+                return NotFound();
+            }
+
+            return View(fichaTecnica);
+        }
+
         public IActionResult ExportPdf(int id)
         {
             var datosFicha = _context.Datosfichatecnicas
@@ -387,7 +403,7 @@ namespace MercDevs_ej2.Controllers
                 return NotFound();
             }
 
-            var pdfResult = new ViewAsPdf("FichaTecnicaPublica", datosFicha)
+            var pdfResult = new ViewAsPdf("FichaTecnicaPdf", datosFicha)
             {
                 FileName = $"Ficha_Tecnica_{id}.pdf",
                 PageSize = Rotativa.AspNetCore.Options.Size.A4,

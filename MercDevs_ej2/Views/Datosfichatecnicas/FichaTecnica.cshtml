@@ -78,8 +78,8 @@
             <th class="border-end">Accesorios: @Model.RecepcionEquipo?.Accesorio</th>
         </tr>
         <tr>
-            <th class="border-end">MarcaPc: @Model.RecepcionEquipo?.MarcaPc</t>
-            <th class="border-end">ModeloPc: @Model.RecepcionEquipo?.ModeloPc</th>
+            <th class="border-end">Marca Pc: @Model.RecepcionEquipo?.MarcaPc</t>
+            <th class="border-end">Modelo Pc: @Model.RecepcionEquipo?.ModeloPc</th>
             <th class="border-end">Numero Serie: @Model.RecepcionEquipo?.Nserie</th>
         </tr>
         <tr>
@@ -237,22 +237,7 @@
                 }
             </td>
             <td colspan="2" class="border-end">
-                Antivirus instalado: @{
-                    string antivirusinstalado = "";
-                    switch (Model.AntivirusInstalado)
-                    {
-                        case "0":
-                            antivirusinstalado = "No Instalado";
-                            break;
-                        case "1":
-                            antivirusinstalado = "Avast";
-                            break;
-                        case "2":
-                            antivirusinstalado = "Mcfee";
-                            break;
-                    }
-                    @antivirusinstalado
-                }
+                Antivirus instalado: @Model.AntivirusInstalado
             </td>
         </tr>
     </tbody>

@@ -84,7 +84,7 @@
     </thead>
     <tbody>
         <tr>
-            <th class="border-end">Nombre: @Model.RecepcionEquipo?.IdClienteNavigation.Nombre</t>
+            <th class="border-end">Nombre: @Model.RecepcionEquipo?.IdClienteNavigation.Nombre</th>
             <th class="border-end">Apellido: @Model.RecepcionEquipo?.IdClienteNavigation.Apellido</th>
             <th class="border-end">Celular: @Model.RecepcionEquipo?.IdClienteNavigation.Telefono</th>
         </tr>
@@ -104,7 +104,7 @@
     </thead>
     <tbody>
         <tr>
-            <th class="border-end">Fecha: @Model.RecepcionEquipo?.Fecha</t>
+            <th class="border-end">Fecha: @Model.RecepcionEquipo?.Fecha</th>
             <th class="border-end">
                 Tipo Pc:                 @{
                         string tipopc = "";
@@ -126,8 +126,8 @@
             <th class="border-end">Accesorios: @Model.RecepcionEquipo?.Accesorio</th>
         </tr>
         <tr>
-            <th class="border-end">MarcaPc: @Model.RecepcionEquipo?.MarcaPc</t>
-            <th class="border-end">ModeloPc: @Model.RecepcionEquipo?.ModeloPc</th>
+            <th class="border-end">Marca Pc: @Model.RecepcionEquipo?.MarcaPc</th>
+            <th class="border-end">Modelo Pc: @Model.RecepcionEquipo?.ModeloPc</th>
             <th class="border-end">Numero Serie: @Model.RecepcionEquipo?.Nserie</th>
         </tr>
         <tr>
@@ -153,7 +153,7 @@
                             break;
                     }
                     @capacidadram
-                }</t>
+                }</th>
             <th class="border-end">
                 Tipo GPU: @{
                         string tipogpu = "";
@@ -224,7 +224,7 @@
                     }
                     @soinstalado
                 }
-                </t>
+                </th>
             <th class="border-end">
                 Suite oficce instalada: @{
                         string suiteofficeinstalada = "";
@@ -285,22 +285,7 @@
                 }
             </td>
             <td colspan="2" class="border-end">
-                Antivirus instalado: @{
-                    string antivirusinstalado = "";
-                    switch (Model.AntivirusInstalado)
-                    {
-                        case "0":
-                            antivirusinstalado = "No Instalado";
-                            break;
-                        case "1":
-                            antivirusinstalado = "Avast";
-                            break;
-                        case "2":
-                            antivirusinstalado = "Mcfee";
-                            break;
-                    }
-                    @antivirusinstalado
-                }
+                    Antivirus instalado: @Model.AntivirusInstalado
             </td>
         </tr>
     </tbody>
